@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احجز خدمتك - المميزة للنظافة</title>
+    <meta name="description" content="احجز خدمة التنظيف الاحترافية بسهولة وسرعة">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #00A8E8;
+            --secondary-color: #00D9FF;
+            --accent-color: #7FDBFF;
+            --dark-color: #1A2238;
+            --light-color: #F8FAFB;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --success-color: #48BB78;
+            --warning-color: #F6AD55;
+            --danger-color: #FC8181;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--light-color) 0%, #F0F8FF 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 900;
+            color: var(--dark-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Back to Home */
+        .back-home {
+            position: fixed;
+            top: 1rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .back-home .btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.2);
+            text-decoration: none;
+        }
+
+        .back-home .btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.4);
+        }
+
+        /* Progress Steps */
+        .progress-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            margin-bottom: 3rem;
+            border: 2px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .progress-line-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .step {
+            position: relative;
+            text-align: center;
+            flex: 1;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #e0e0e0;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-circle {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-circle {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: white;
+        }
+
+        .step-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #999;
+        }
+
+        .step.active .step-title {
+            color: var(--primary-color);
+        }
+
+        .step.completed .step-title {
+            color: var(--success-color);
+        }
+
+        /* Form Sections */
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 3rem;
+        }
+
+        .form-section {
+            display: none;
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            border: 2px solid rgba(0, 168, 232, 0.1);
+            animation: slideIn 0.5s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        /* Choice Cards */
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .choice-card {
+            background: white;
+            border: 3px solid rgba(0, 168, 232, 0.15);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .choice-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 168, 232, 0.25);
+        }
+
+        .choice-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .choice-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .choice-desc {
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 3px solid rgba(0, 168, 232, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 168, 232, 0.2);
+        }
+
+        .service-card.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.05), rgba(0, 217, 255, 0.05));
+            box-shadow: 0 12px 35px rgba(0, 168, 232, 0.25);
+        }
+
+        .check-icon {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            background: var(--success-color);
+            border-color: var(--success-color);
+        }
+
+        .service-card.selected .check-icon,
+        .package-card.selected .check-icon,
+        .payment-option.selected .check-icon {
+            display: flex;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.6rem;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .service-qty-wrapper {
+            margin-top: 0.9rem;
+            text-align: right;
+        }
+
+        .service-qty-wrapper label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--text-dark);
+        }
+
+        .service-qty {
+            width: 100%;
+            max-width: 140px;
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            border: 2px solid rgba(0, 168, 232, 0.25);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 700;
+            direction: ltr;
+            text-align: center;
+        }
+
+        .service-qty:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,168,232,0.15);
+        }
+
+        /* Package Cards */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .package-card {
+            background: white;
+            border: 3px solid rgba(0, 168, 232, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover,
+        .package-card.selected {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 168, 232, 0.25);
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.05), rgba(0, 217, 255, 0.05));
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--warning-color), #FFB74D);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .package-name {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .package-features li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .package-features i {
+            color: var(--success-color);
+            font-size: 1.1rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            color: var(--dark-color);
+            font-size: 1.05rem;
+        }
+
+        .form-label i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid rgba(0, 168, 232, 0.15);
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(0, 168, 232, 0.05);
+            box-shadow: 0 0 0 6px rgba(0, 168, 232, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .form-help {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-help i {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        /* Payment Methods */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .payment-option {
+            background: white;
+            border: 3px solid rgba(0, 168, 232, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 168, 232, 0.2);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.05), rgba(0, 217, 255, 0.05));
+            box-shadow: 0 12px 35px rgba(0, 168, 232, 0.25);
+        }
+
+        .payment-logo {
+            width: 100px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .payment-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .payment-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark-color);
+        }
+
+        .payment-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* Summary Sidebar */
+        .booking-summary {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            border: 2px solid rgba(0, 168, 232, 0.1);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(0, 168, 232, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .summary-title i {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+        }
+
+        .summary-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .summary-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-value {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--dark-color);
+        }
+
+        .summary-total {
+            padding: 1.5rem 0;
+            margin-top: 1.5rem;
+            border-top: 3px solid rgba(0, 168, 232, 0.2);
+        }
+
+        .summary-total .summary-label {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--dark-color);
+        }
+
+        .summary-total .summary-value {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 168, 232, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 168, 232, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .form-actions .btn {
+            flex: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+            .booking-summary {
+                position: static;
+                margin-top: 2rem;
+            }
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .container {
+                padding: 1.25rem 1rem;
+            }
+
+            .form-section {
+                padding: 2rem 1.5rem;
+                border-radius: 18px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .choice-grid,
+            .services-grid,
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .choice-card,
+            .service-card,
+            .package-card,
+            .payment-option {
+                padding: 1.8rem 1.5rem;
+                border-radius: 18px;
+            }
+
+            .choice-title,
+            .package-name {
+                font-size: 1.4rem;
+            }
+
+            .package-price {
+                font-size: 2rem;
+            }
+
+            .progress-steps {
+                overflow-x: auto;
+                gap: 1.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .progress-steps::-webkit-scrollbar {
+                display: none;
+            }
+
+            .progress-line {
+                display: none;
+            }
+
+            .step {
+                min-width: 90px;
+            }
+
+            .step-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .step-title {
+                font-size: 0.9rem;
+            }
+
+            .form-actions {
+                position: sticky;
+                bottom: 0;
+                background: white;
+                padding: 1rem 0 1.2rem;
+                margin-top: 1.5rem;
+                border-top: 1px solid rgba(0,168,232,0.1);
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home -->
+    <div class="back-home">
+        <a href="index.html" class="btn">
+            <i class="fas fa-arrow-right"></i>
+            العودة للرئيسية
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="progress-line">
+                    <div class="progress-line-fill" id="progressFill"></div>
+                </div>
+
+                <div class="step active" data-step="0">
+                    <div class="step-circle"><i class="fas fa-th-large"></i></div>
+                    <div class="step-title">نوع الحجز</div>
+                </div>
+                <div class="step" data-step="1">
+                    <div class="step-circle"><i class="fas fa-list"></i></div>
+                    <div class="step-title">اختر الخدمة</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-circle"><i class="fas fa-calendar"></i></div>
+                    <div class="step-title">التاريخ والوقت</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-circle"><i class="fas fa-user"></i></div>
+                    <div class="step-title">بياناتك</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-circle"><i class="fas fa-credit-card"></i></div>
+                    <div class="step-title">الدفع</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-layout">
+            <div>
+                <!-- Step 0: Booking Type -->
+                <div class="form-section active" id="step0">
+                    <div class="section-header">
+                        <h2 class="section-title">اختر نوع الحجز</h2>
+                        <p class="section-subtitle">هل تفضل حجز خدمات منفصلة أم باقة شاملة؟</p>
+                    </div>
+                    <div class="choice-grid">
+                        <div class="choice-card" onclick="selectBookingType('services')">
+                            <div class="choice-icon"><i class="fas fa-tasks"></i></div>
+                            <h3 class="choice-title">خدمات منفصلة</h3>
+                            <p class="choice-desc">اختر الخدمات التي تحتاجها بشكل منفصل</p>
+                        </div>
+                        <div class="choice-card" onclick="selectBookingType('packages')">
+                            <div class="choice-icon"><i class="fas fa-box-open"></i></div>
+                            <h3 class="choice-title">باقات جاهزة</h3>
+                            <p class="choice-desc">اختر باقة شاملة بسعر مخفض</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 1A: Individual Services -->
+                <div class="form-section" id="step1services">
+                    <div class="section-header">
+                        <h2 class="section-title">اختر الخدمات المنفصلة</h2>
+                        <p class="section-subtitle">يمكنك اختيار أكثر من خدمة في آن واحد</p>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-card" data-service="sofa" data-price="140">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-couch"></i></div>
+                            <h3 class="service-title">غسيل الكنب</h3>
+                            <div class="service-price">140 ريال</div>
+                            <p class="service-desc">تنظيف عميق للكنب وإزالة البقع والروائح.</p>
+                        </div>
+
+                        <div class="service-card" data-service="carpet-fixed" data-price="170">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-rug"></i></div>
+                            <h3 class="service-title">غسيل الكنب مع السجاد</h3>
+                            <div class="service-price">170 ريال</div>
+                            <p class="service-desc">غسيل شامل للسجاد بمواد آمنة على الألوان والألياف.</p>
+                        </div>
+
+                        <div class="service-card" data-service="carpet-meter" data-price="5">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-ruler-combined"></i></div>
+                            <h3 class="service-title">غسيل السجاد بالمتر</h3>
+                            <div class="service-price">5 ريال / المتر</div>
+                            <p class="service-desc">سعر مرن حسب مساحة السجاد بالمتر الطولي.</p>
+                            <div class="service-qty-wrapper">
+                                <label for="carpetMeters">عدد الأمتار المطلوبة</label>
+                                <input id="carpetMeters" class="service-qty" type="number" min="1" value="1">
+                            </div>
+                        </div>
+
+                        <div class="service-card" data-service="pool" data-price="200">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-swimming-pool"></i></div>
+                            <h3 class="service-title">غسيل المسابح</h3>
+                            <div class="service-price">200 ريال</div>
+                            <p class="service-desc">تنظيف وتعقيم المسابح بمعدات متخصصة.</p>
+                        </div>
+
+                        <div class="service-card" data-service="apartment" data-price="400">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-building"></i></div>
+                            <h3 class="service-title">غسيل الشقق</h3>
+                            <div class="service-price">400 ريال</div>
+                            <p class="service-desc">تنظيف شامل للشقة بكافة الغرف والمرافق.</p>
+                        </div>
+
+                        <div class="service-card" data-service="villa" data-price="1200">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-house-chimney"></i></div>
+                            <h3 class="service-title">غسيل الفلل</h3>
+                            <div class="service-price">1200 ريال</div>
+                            <p class="service-desc">غسيل وتنظيف كامل للفلل الكبيرة والمجالس.</p>
+                        </div>
+
+                        <div class="service-card" data-service="chimney" data-price="200">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-fire"></i></div>
+                            <h3 class="service-title">غسيل المشبات</h3>
+                            <div class="service-price">200 ريال</div>
+                            <p class="service-desc">تنظيف المشبات وإزالة آثار الفحم والسناج.</p>
+                        </div>
+
+                        <div class="service-card" data-service="tanks" data-price="300">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="service-icon"><i class="fas fa-water"></i></div>
+                            <h3 class="service-title">غسيل الخزانات العلوية والأرضية</h3>
+                            <div class="service-price">300 ريال</div>
+                            <p class="service-desc">تنظيف وتعقيم خزان علوي وخزان أرضي في نفس الزيارة.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="backToChoice()">
+                            <i class="fas fa-arrow-right"></i> العودة
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            التالي <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 1B: Packages -->
+                <div class="form-section" id="step1packages">
+                    <div class="section-header">
+                        <h2 class="section-title">اختر الباقة المناسبة</h2>
+                        <p class="section-subtitle">وفّر أكثر مع الباقات الشاملة</p>
+                    </div>
+                    <div class="packages-grid">
+                        <div class="package-card" data-package="basic" data-price="299">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <h3 class="package-name">الباقة الأساسية</h3>
+                            <div class="package-price">299 ريال</div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check-circle"></i> تنظيف عام</li>
+                                <li><i class="fas fa-check-circle"></i> مرتين أسبوعياً</li>
+                                <li><i class="fas fa-check-circle"></i> تنظيف المطبخ</li>
+                                <li><i class="fas fa-check-circle"></i> تنظيف الحمام</li>
+                            </ul>
+                        </div>
+
+                        <div class="package-card" data-package="premium" data-price="499">
+                            <div class="package-badge">الأكثر شعبية</div>
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <h3 class="package-name">الباقة المميزة</h3>
+                            <div class="package-price">499 ريال</div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check-circle"></i> كل مميزات الأساسية</li>
+                                <li><i class="fas fa-check-circle"></i> تعقيم شامل</li>
+                                <li><i class="fas fa-check-circle"></i> تنظيف مفروشات</li>
+                                <li><i class="fas fa-check-circle"></i> 3 مرات أسبوعياً</li>
+                            </ul>
+                        </div>
+
+                        <div class="package-card" data-package="gold" data-price="799">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <h3 class="package-name">الباقة الذهبية</h3>
+                            <div class="package-price">799 ريال</div>
+                            <ul class="package-features">
+                                <li><i class="fas fa-check-circle"></i> كل المميزات</li>
+                                <li><i class="fas fa-check-circle"></i> تنظيف يومي</li>
+                                <li><i class="fas fa-check-circle"></i> تنظيف نوافذ</li>
+                                <li><i class="fas fa-check-circle"></i> دعم 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="backToChoice()">
+                            <i class="fas fa-arrow-right"></i> العودة
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            التالي <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Date & Time -->
+                <div class="form-section" id="step2">
+                    <div class="section-header">
+                        <h2 class="section-title">اختر التاريخ والوقت</h2>
+                        <p class="section-subtitle">حدد الموعد المناسب لتنفيذ الخدمة</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-calendar-alt"></i>
+                            التاريخ
+                        </label>
+                        <input type="date" class="form-input" id="bookingDate" required>
+                        <div class="form-help">
+                            <i class="fas fa-info-circle"></i>
+                            اختر التاريخ من التقويم أعلاه (يبدأ من اليوم)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-clock"></i>
+                            الوقت المفضل
+                        </label>
+                        <select class="form-input" id="bookingTime" required>
+                            <option value="">اختر الوقت</option>
+                            <option value="08:00">8:00 صباحاً</option>
+                            <option value="10:00">10:00 صباحاً</option>
+                            <option value="12:00">12:00 ظهراً</option>
+                            <option value="14:00">2:00 مساءً</option>
+                            <option value="16:00">4:00 مساءً</option>
+                            <option value="18:00">6:00 مساءً</option>
+                        </select>
+                        <div class="form-help">
+                            <i class="fas fa-info-circle"></i>
+                            اختر الوقت الأنسب لك من القائمة
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-right"></i> السابق
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            التالي <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Personal Info -->
+                <div class="form-section" id="step3">
+                    <div class="section-header">
+                        <h2 class="section-title">معلوماتك الشخصية</h2>
+                        <p class="section-subtitle">أدخل بياناتك للتواصل معك</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user"></i>
+                            الاسم الكامل
+                        </label>
+                        <input type="text" class="form-input" id="customerName" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone"></i>
+                            رقم الجوال
+                        </label>
+                        <input type="tel" class="form-input" id="customerPhone" placeholder="05xxxxxxxx" required>
+                        <div class="form-help">
+                            <i class="fas fa-info-circle"></i>
+                            سنتواصل معك على هذا الرقم لتأكيد الموعد
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            البريد الإلكتروني
+                        </label>
+                        <input type="email" class="form-input" id="customerEmail" placeholder="email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            العنوان
+                        </label>
+                        <input type="text" class="form-input" id="customerAddress" placeholder="أدخل عنوانك بالتفصيل" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-right"></i> السابق
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            التالي <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Payment -->
+                <div class="form-section" id="step4">
+                    <div class="section-header">
+                        <h2 class="section-title">طريقة الدفع</h2>
+                        <p class="section-subtitle">اختر طريقة الدفع المناسبة لك</p>
+                    </div>
+
+                    <div class="payment-grid">
+                        <div class="payment-option" data-payment="card">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <img src="images/visa.png" alt="Visa" class="payment-logo">
+                            <h3 class="payment-title">بطاقة ائتمانية</h3>
+                            <p class="payment-desc">Visa, Mastercard, Mada</p>
+                        </div>
+
+                        <div class="payment-option" data-payment="cash">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <div class="payment-icon"><i class="fas fa-money-bill-wave"></i></div>
+                            <h3 class="payment-title">الدفع عند الاستلام</h3>
+                            <p class="payment-desc">نقداً للفني</p>
+                        </div>
+
+                        <div class="payment-option" data-payment="tabby">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <img src="images/tabby.png" alt="Tabby" class="payment-logo">
+                            <h3 class="payment-title">تابي</h3>
+                            <p class="payment-desc">قسّط على 4 دفعات</p>
+                        </div>
+
+                        <div class="payment-option" data-payment="tamara">
+                            <div class="check-icon"><i class="fas fa-check"></i></div>
+                            <img src="images/tamara.png" alt="Tamara" class="payment-logo">
+                            <h3 class="payment-title">تمارا</h3>
+                            <p class="payment-desc">قسّط على 3 دفعات</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-right"></i> السابق
+                        </button>
+                        <button class="btn btn-primary" onclick="completeBooking()">
+                            <i class="fas fa-check-circle"></i> إتمام الحجز
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Summary -->
+            <div class="booking-summary">
+                <h3 class="summary-title">
+                    <i class="fas fa-file-invoice"></i>
+                    ملخص الطلب
+                </h3>
+                <div class="summary-item">
+                    <div class="summary-label">نوع الحجز</div>
+                    <div class="summary-value" id="summaryBookingType">لم يتم الاختيار</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">الخدمة/الباقة</div>
+                    <div class="summary-value" id="summaryService">لم يتم الاختيار</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">التاريخ</div>
+                    <div class="summary-value" id="summaryDate">لم يتم الاختيار</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">الوقت</div>
+                    <div class="summary-value" id="summaryTime">لم يتم الاختيار</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">طريقة الدفع</div>
+                    <div class="summary-value" id="summaryPayment">لم يتم الاختيار</div>
+                </div>
+                <div class="summary-total">
+                    <div class="summary-label">المجموع الكلي</div>
+                    <div class="summary-value" id="summaryTotal">0 ريال</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="js/booking.js"></script>
+</body>
+</html>

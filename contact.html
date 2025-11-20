@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا -شركة المميز للنظافة</title>
+    <meta name="description" content="تواصل مع شركة المميزة للنظافة - نرد على جميع استفساراتك في أسرع وقت">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #00A8E8;
+            --secondary-color: #00D9FF;
+            --accent-color: #7FDBFF;
+            --dark-color: #1A2238;
+            --light-color: #F8FAFB;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            --border-radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--light-color) 0%, #F0F8FF 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 { font-weight: 900; color: var(--dark-color); }
+        p { line-height: 1.8; color: var(--text-dark); }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .col-6 { grid-column: span 1; }
+
+        /* ====================== NAVBAR ====================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 2px solid rgba(0, 168, 232, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.99);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 50px rgba(15,23,42,0.28);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            transform: scale(1.08);
+            text-shadow: 0 0 20px rgba(0, 168, 232, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after { width: 100%; }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before { left: 100%; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+            border: 2px solid rgba(0, 168, 232, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 168, 232, 0.6);
+            border-color: rgba(0, 168, 232, 0.5);
+        }
+
+        /* زر الموبايل */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+       .menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,0.45);
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ====================== PAGE HEADER ====================== */
+
+        .page-header {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #00A8E8 0%, #00D9FF 50%, #7FDBFF 100%);
+        }
+
+        .page-header-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: url('images/contact-hero.jpg');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .page-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 168, 232, 0.25) 0%,
+                rgba(0, 168, 232, 0.15) 50%,
+                rgba(0, 168, 232, 0.35) 100%
+            );
+            z-index: 1;
+        }
+
+        .bubble-float {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), transparent);
+            animation: bubbleRise 12s ease-in infinite;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1), 0 8px 20px rgba(255,255,255,0.2);
+            z-index: 1;
+        }
+
+        @keyframes bubbleRise {
+            0% { opacity: 0; transform: translateY(0) translateX(0); }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-70vh) translateX(100px); }
+        }
+
+        .bubble1 { width: 80px; height: 80px; left: 10%; bottom: -80px; animation-delay: 0s; animation-duration: 12s; }
+        .bubble2 { width: 120px; height: 120px; left: 30%; bottom: -120px; animation-delay: 2s; animation-duration: 14s; }
+        .bubble3 { width: 50px; height: 50px; left: 50%; bottom: -50px; animation-delay: 4s; animation-duration: 10s; }
+        .bubble4 { width: 90px; height: 90px; left: 70%; bottom: -90px; animation-delay: 1s; animation-duration: 13s; }
+        .bubble5 { width: 60px; height: 60px; left: 85%; bottom: -60px; animation-delay: 3s; animation-duration: 11s; }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header-content h1,
+        .page-header-content p,
+        .page-header .breadcrumb {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        body.contact-hero-loaded .page-header-content h1 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.05s;
+        }
+
+        body.contact-hero-loaded .page-header-content p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        body.contact-hero-loaded .page-header .breadcrumb {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.35s;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        .breadcrumb a {
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover { opacity: 0.8; }
+
+        /* ====================== SECTIONS ====================== */
+
+        .section-padding {
+            padding: 6rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .section-padding.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-light {
+            background: linear-gradient(135deg, #EFF6FB 0%, #E8F4F9 50%, #F0F8FF 100%);
+            position: relative;
+        }
+
+        .bg-light::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0, 168, 232, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0, 217, 255, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.15), rgba(0, 217, 255, 0.1));
+            color: var(--primary-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(0, 168, 232, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section-badge:hover {
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.25), rgba(0, 217, 255, 0.2));
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ====================== CONTACT INFO GRID ====================== */
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .section-padding.visible .contact-info-card {
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0, 168, 232, 0.25), 0 0 40px rgba(0, 217, 255, 0.15);
+            border-color: rgba(0, 168, 232, 0.3);
+        }
+
+        .contact-info-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-card:hover i {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--secondary-color);
+        }
+
+        .contact-info-card h3 {
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .contact-info-card p {
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .contact-info-card a {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-card a:hover {
+            color: var(--secondary-color);
+            transform: translateX(-3px);
+        }
+
+        /* ====================== CONTACT FORM & MAP ====================== */
+
+        .contact-form {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            border: 2px solid rgba(0, 168, 232, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 20px 60px rgba(0, 168, 232, 0.2);
+            border-color: rgba(0, 168, 232, 0.2);
+        }
+
+        .map-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            border: 2px solid rgba(0, 168, 232, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 168, 232, 0.2);
+            border-color: rgba(0, 168, 232, 0.2);
+        }
+
+        .map-card h3 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--dark-color);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .map-card h3 i {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.15);
+            min-height: 600px;
+            position: relative;
+            transition: all 0.3s ease;
+            background: #f0f0f0;
+        }
+
+        .map-container:hover {
+            box-shadow: 0 12px 35px rgba(0, 168, 232, 0.25);
+            transform: scale(1.01);
+        }
+
+        .map-container img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .map-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .map-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.2rem;
+            padding: 0.9rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.3);
+        }
+
+        .map-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 168, 232, 0.5);
+        }
+
+        .map-link i {
+            font-size: 1.1rem;
+        }
+
+        .form-group { margin-bottom: 2rem; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            color: var(--dark-color);
+            font-size: 1.05rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid rgba(0, 168, 232, 0.15);
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(0, 168, 232, 0.05);
+            box-shadow: 0 0 0 6px rgba(0, 168, 232, 0.12), 0 8px 25px rgba(0, 168, 232, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 180px;
+            line-height: 1.8;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* ====================== CTA ====================== */
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            animation: backgroundShift 15s ease infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                background:
+                    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            }
+            50% {
+                background:
+                    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            }
+        }
+
+        .cta-content { position: relative; z-index: 2; }
+
+        .cta-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+        /* ====================== FOOTER ====================== */
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #0F1B2D 100%);
+            color: white;
+            padding: 4rem 0 1.5rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3, .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 900;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 1rem; }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 168, 232, 0.2);
+            color: white;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-color: var(--primary-color);
+            transform: translateY(-8px) rotate(360deg);
+            box-shadow: 0 8px 20px rgba(0, 168, 232, 0.4);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 168, 232, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+
+        /* ====================== SCROLL TO TOP ====================== */
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 168, 232, 0.6);
+        }
+
+        /* ====================== RESPONSIVE ====================== */
+
+        @media (max-width: 1020px) {
+            .row { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+            .map-container { min-height: 380px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1.25rem; }
+
+            .page-header-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+
+            .nav-menu { display: none; }
+
+            .menu-toggle { display: flex; }
+
+            .navbar .btn.nav-cta { display: none; }
+
+            .nav-menu.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,0.98);
+                padding: 2rem 1rem 1.5rem;
+                gap: 1rem;
+                z-index: 950;
+            }
+
+            .nav-menu.mobile-active a {
+                padding: 1rem 1.4rem;
+                border-radius: 14px;
+                background: rgba(0,168,232,0.06);
+                text-align: center;
+            }
+
+            .contact-info-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .scroll-to-top {
+                bottom: 1.6rem;
+                right: 1.6rem;
+                width: 46px;
+                height: 46px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            .page-header { min-height: 60vh; }
+            .page-header-content h1 { font-size: 2rem; }
+            .contact-form { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo-section">
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="logo">
+                        <img src="images/logo.png" alt="شعار" onerror="this.style.display='none'">
+                        <span>شركة المميز للنظافة</span>
+                    </div>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">خدماتنا</a></li>
+                    <li><a href="packages.html">الباقات</a></li>
+                    <li><a href="contact.html" class="active">تواصل معنا</a></li>
+                </ul>
+
+                <a href="booking.html" class="btn btn-primary nav-cta">
+                    <i class="fas fa-calendar-check"></i>
+                    احجز الآن
+                </a>
+
+                <div class="nav-overlay" id="navOverlay"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-image"></div>
+        <div class="page-header-overlay"></div>
+
+        <div class="bubble-float bubble1"></div>
+        <div class="bubble-float bubble2"></div>
+        <div class="bubble-float bubble3"></div>
+        <div class="bubble-float bubble4"></div>
+        <div class="bubble-float bubble5"></div>
+
+        <div class="container">
+            <div class="page-header-content">
+                <h1>تواصل معنا</h1>
+                <p>نحن هنا للإجابة على جميع استفساراتك على مدار الساعة</p>
+                <div class="breadcrumb">
+                    <a href="index.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>تواصل معنا</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="section-padding" id="contact-info">
+        <div class="container">
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>الهاتف</h3>
+                    <p>
+                        <a href="tel:+966501234567">+966 50 123 4567</a><br>
+                        <a href="tel:+966112345678">+966 11 234 5678</a>
+                    </p>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>البريد الإلكتروني</h3>
+                    <p>
+                        <a href="mailto:info@cleaning.sa">info@cleaning.sa</a><br>
+                        <a href="mailto:support@cleaning.sa">support@cleaning.sa</a>
+                    </p>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>العنوان</h3>
+                    <p>القصيم، المملكة العربية السعودية<br>مدينه بريده</p>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>ساعات العمل</h3>
+                    <p>
+                        من الأحد إلى الخميس<br>
+                        8:00 صباحاً - 8:00 مساءً
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map -->
+    <section class="section-padding bg-light" id="contact-form-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">راسلنا</span>
+                <h2 class="section-title">أرسل لنا رسالتك</h2>
+                <p class="section-subtitle">سنرد على رسالتك في أقرب وقت ممكن ونقدم لك أفضل الحلول</p>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>الاسم الكامل</label>
+                                <input type="text" placeholder="أدخل اسمك الكامل" required>
+                            </div>
+                            <div class="form-group">
+                                <label>البريد الإلكتروني</label>
+                                <input type="email" placeholder="email@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>الموضوع</label>
+                            <input type="text" placeholder="ما موضوع استفسارك؟" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>الرسالة</label>
+                            <textarea placeholder="اكتب رسالتك هنا بالتفصيل..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1.1rem 2rem; font-size: 1.1rem;">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-6">
+                    <div class="map-card">
+                        <h3><i class="fas fa-map-marked-alt"></i> موقعنا على الخريطة</h3>
+                        <div class="map-container">
+                            <img src="images/map-location.jpg" alt="موقع الشركة على الخريطة">
+                        </div>
+                        <a href="https://goo.gl/maps/YOUR_GOOGLE_MAPS_LINK_HERE"
+                           target="_blank"
+                           class="map-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            افتح في خرائط جوجل
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="bubble-float bubble1"></div>
+        <div class="bubble-float bubble2"></div>
+        <div class="bubble-float bubble3"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>هل تريد حجز خدمة مباشرة؟</h2>
+                <p>احجز الآن واستمتع بخدمة تنظيف احترافية بأفضل الأسعار</p>
+                <a href="booking.html" class="btn btn-primary" style="margin-top: 1rem; font-size: 1.15rem; padding: 1rem 2.5rem; background: white; color: var(--primary-color);">
+                    <i class="fas fa-calendar-check"></i>
+                    احجز الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>
+                        <i class="fas fa-sparkles"></i>
+                        شركة المميز للنظافة
+                    </h3>
+                    <p>نقدم أفضل خدمات التنظيف الاحترافية التي تلامس الكمال</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="packages.html">الباقات</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>خدماتنا</h4>
+                    <ul>
+                        <li><a href="services.html">تنظيف المنازل</a></li>
+                        <li><a href="services.html">تنظيف المكاتب</a></li>
+                        <li><a href="services.html">التعقيم والتطهير</a></li>
+                        <li><a href="services.html">تنظيف الأثاث</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-envelope"></i> info@cleaning.sa</li>
+                        <li><i class="fas fa-map-marker-alt"></i> القصيم، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 شركة المميز للنظافة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JS -->
+    <script>
+        (function () {
+            'use strict';
+
+            const navbar    = document.getElementById('navbar');
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu   = document.getElementById('navMenu');
+            const navOverlay = document.getElementById('navOverlay');
+            const scrollBtn = document.getElementById('scrollToTop');
+
+            const sections  = document.querySelectorAll('.section-padding');
+
+            /* أنيميشن الهيرو عند تحميل الصفحة */
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.classList.add('contact-hero-loaded');
+            });
+
+            /* NAVBAR MOBILE */
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('mobile-active');
+                    navOverlay.classList.toggle('active');
+                    document.body.style.overflow = navMenu.classList.contains('mobile-active') ? 'hidden' : '';
+                });
+            }
+
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('mobile-active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (navMenu) {
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('mobile-active');
+                        navOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            /* SCROLL EFFECTS */
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (scrollBtn) {
+                    scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+                }
+            });
+
+            if (scrollBtn) {
+                scrollBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            /* REVEAL SECTIONS ON SCROLL */
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.18 });
+
+                sections.forEach(sec => observer.observe(sec));
+            } else {
+                window.addEventListener('load', () => {
+                    sections.forEach(sec => sec.classList.add('visible'));
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

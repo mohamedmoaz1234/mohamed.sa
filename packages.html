@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الباقات - شركةالمميز للنظافة</title>
+    <meta name="description" content="اختر من باقاتنا المتنوعة واحصل على أفضل عرض لخدمات التنظيف">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #00A8E8;
+            --secondary-color: #00D9FF;
+            --accent-color: #7FDBFF;
+            --dark-color: #1A2238;
+            --light-color: #F8FAFB;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            --border-radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--light-color) 0%, #F0F8FF 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 { font-weight: 900; color: var(--dark-color); }
+        p { line-height: 1.8; color: var(--text-dark); }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ====================== NAVBAR ====================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 2px solid rgba(0, 168, 232, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.99);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 50px rgba(15,23,42,0.28);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            transform: scale(1.08);
+            text-shadow: 0 0 20px rgba(0, 168, 232, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after { width: 100%; }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before { left: 100%; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+            border: 2px solid rgba(0, 168, 232, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 168, 232, 0.6);
+            border-color: rgba(0, 168, 232, 0.5);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-light:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* زر موبايل */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15,23,42,0.45);
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ====================== PAGE HEADER ====================== */
+
+        .page-header {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #00A8E8 0%, #00D9FF 50%, #7FDBFF 100%);
+        }
+
+        .page-header-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: url('images/packages-hero.jpg');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .page-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 168, 232, 0.25) 0%,
+                rgba(0, 168, 232, 0.15) 50%,
+                rgba(0, 168, 232, 0.35) 100%
+            );
+            z-index: 1;
+        }
+
+        .bubble-float {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), transparent);
+            animation: bubbleRise 12s ease-in infinite;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1), 0 8px 20px rgba(255,255,255,0.2);
+            z-index: 1;
+        }
+
+        @keyframes bubbleRise {
+            0% { opacity: 0; transform: translateY(0) translateX(0); }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-70vh) translateX(100px); }
+        }
+
+        .bubble1 { width: 80px; height: 80px; left: 10%; bottom: -80px; animation-delay: 0s; animation-duration: 12s; }
+        .bubble2 { width: 120px; height: 120px; left: 30%; bottom: -120px; animation-delay: 2s; animation-duration: 14s; }
+        .bubble3 { width: 50px; height: 50px; left: 50%; bottom: -50px; animation-delay: 4s; animation-duration: 10s; }
+        .bubble4 { width: 90px; height: 90px; left: 70%; bottom: -90px; animation-delay: 1s; animation-duration: 13s; }
+        .bubble5 { width: 60px; height: 60px; left: 85%; bottom: -60px; animation-delay: 3s; animation-duration: 11s; }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .page-header-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        .breadcrumb a {
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover { opacity: 0.8; }
+
+        /* أنيميشن الهيرو */
+        .page-header-content h1,
+        .page-header-content p,
+        .page-header .breadcrumb {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        body.packages-hero-loaded .page-header-content h1 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.05s;
+        }
+
+        body.packages-hero-loaded .page-header-content p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        body.packages-hero-loaded .page-header .breadcrumb {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.35s;
+        }
+
+        /* ====================== SECTIONS ====================== */
+
+        .section-padding {
+            padding: 6rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .section-padding.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-light {
+            background: linear-gradient(135deg, #EFF6FB 0%, #E8F4F9 50%, #F0F8FF 100%);
+            position: relative;
+        }
+
+        .bg-light::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0, 168, 232, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0, 217, 255, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.15), rgba(0, 217, 255, 0.1));
+            color: var(--primary-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(0, 168, 232, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section-badge:hover {
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.25), rgba(0, 217, 255, 0.2));
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ====================== PACKAGES GRID ====================== */
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 2px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .section-padding.visible .package-card {
+            animation: fadeUp 0.9s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .package-card:hover {
+            transform: translateY(-18px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0, 168, 232, 0.25), 0 0 40px rgba(0, 217, 255, 0.15);
+            border-color: rgba(0, 168, 232, 0.3);
+        }
+
+        .package-card.featured {
+            border: 3px solid #F6AD55;
+            box-shadow: 0 15px 50px rgba(246, 173, 85, 0.3), 0 12px 40px rgba(0, 168, 232, 0.15);
+        }
+
+        .package-card.featured:hover {
+            box-shadow: 0 30px 70px rgba(246, 173, 85, 0.4), 0 25px 60px rgba(0, 168, 232, 0.25);
+        }
+
+        .package-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            animation: rotateGradient 8s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .package-header h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .package-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .package-price::before {
+            content: 'ر.س';
+            font-size: 1.3rem;
+            margin-left: 0.5rem;
+            font-weight: 700;
+        }
+
+        .package-period {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+        }
+
+        .badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #F6AD55, #F59E0B);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            z-index: 10;
+            box-shadow: 0 8px 25px rgba(246, 173, 85, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .package-body {
+            padding: 2.5rem 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            flex: 1;
+        }
+
+        .package-features li {
+            padding: 1rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 2px solid rgba(0, 168, 232, 0.08);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .package-features li:hover {
+            padding-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .package-features i {
+            color: #48BB78;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .package-body .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1.1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* تحكم للكاروسيل في الموبايل */
+        .packages-carousel-controls {
+            display: none;
+            margin-top: 1.2rem;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 6px 16px rgba(15,23,42,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(15,23,42,0.2);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(148,163,184,0.6);
+            transition: all 0.25s ease;
+        }
+
+        .carousel-dot.active {
+            width: 18px;
+            border-radius: 999px;
+            background: var(--primary-color);
+        }
+
+        /* ====================== COMPARISON TABLE ====================== */
+
+        .comparison-section {
+            margin: 3rem 0;
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 168, 232, 0.12);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            border: 2px solid rgba(0, 168, 232, 0.08);
+        }
+
+        .comparison-table th {
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.02) 0%, rgba(0, 217, 255, 0.02) 100%);
+        }
+
+        .comparison-table tbody tr:hover {
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.08) 0%, rgba(0, 217, 255, 0.06) 100%);
+        }
+
+        .comparison-table td {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .feature-name {
+            text-align: right;
+            font-weight: 800;
+            color: var(--dark-color);
+        }
+
+        .comparison-table td i {
+            font-size: 1.5rem;
+        }
+
+        /* ====================== FAQ ====================== */
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 2.3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 168, 232, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 168, 232, 0.08);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 15px 45px rgba(0, 168, 232, 0.18);
+            transform: translateY(-8px);
+            border-color: rgba(0, 168, 232, 0.2);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+            color: var(--dark-color);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .faq-question i {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* ====================== CTA ====================== */
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            animation: backgroundShift 15s ease infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                background:
+                    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            }
+            50% {
+                background:
+                    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            }
+        }
+
+        .cta-content { position: relative; z-index: 2; }
+
+        .cta-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+        /* ====================== FOOTER ====================== */
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #0F1B2D 100%);
+            color: white;
+            padding: 4rem 0 1.5rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3, .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 900;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 1rem; }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+
+        .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(0, 168, 232, 0.2);
+    color: white;
+}
+
+.social-links a:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-color: var(--primary-color);
+    transform: translateY(-8px) rotate(360deg);
+    box-shadow: 0 8px 20px rgba(0, 168, 232, 0.4);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(0, 168, 232, 0.2);
+    padding-top: 2rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+
+        /* ====================== SCROLL TO TOP ====================== */
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 168, 232, 0.6);
+        }
+
+        /* ====================== RESPONSIVE ====================== */
+
+        @media (max-width: 1020px) {
+            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1.25rem; }
+
+            .page-header-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+
+            .nav-menu { display: none; }
+
+            .menu-toggle { display: flex; }
+
+            .navbar .btn.nav-cta { display: none; }
+
+            .nav-menu.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,0.98);
+                padding: 2rem 1rem 1.5rem;
+                gap: 1rem;
+                z-index: 950;
+            }
+
+            .nav-menu.mobile-active a {
+                padding: 1rem 1.4rem;
+                border-radius: 14px;
+                background: rgba(0,168,232,0.06);
+                text-align: center;
+            }
+
+            /* الباقات ككاروسيل أفقي */
+            .packages-grid {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 1.1rem;
+                padding-bottom: 0.8rem;
+                scroll-snap-type: x proximity;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .packages-grid::-webkit-scrollbar { display: none; }
+
+            .package-card {
+                flex: 0 0 80%;
+                min-width: 260px;
+                max-width: 320px;
+                scroll-snap-align: center;
+            }
+
+            .packages-carousel-controls {
+                display: flex;
+            }
+
+            .comparison-table th, .comparison-table td {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .scroll-to-top {
+                bottom: 1.6rem;
+                right: 1.6rem;
+                width: 46px;
+                height: 46px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            .page-header { min-height: 60vh; }
+            .page-header-content h1 { font-size: 2rem; }
+            .packages-grid { gap: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo-section">
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="logo">
+                        <img src="images/logo.png" alt="شعار" onerror="this.style.display='none'">
+                        <span>شركة المميز للنظافة</span>
+                    </div>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">خدماتنا</a></li>
+                    <li><a href="packages.html" class="active">الباقات</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+
+                <a href="booking.html" class="btn btn-primary nav-cta">
+                    <i class="fas fa-calendar-check"></i>
+                    احجز الآن
+                </a>
+
+                <div class="nav-overlay" id="navOverlay"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-image"></div>
+        <div class="page-header-overlay"></div>
+
+        <div class="bubble-float bubble1"></div>
+        <div class="bubble-float bubble2"></div>
+        <div class="bubble-float bubble3"></div>
+        <div class="bubble-float bubble4"></div>
+        <div class="bubble-float bubble5"></div>
+
+        <div class="container">
+            <div class="page-header-content">
+                <h1>الباقات والأسعار</h1>
+                <p>اختر الباقة المناسبة لاحتياجاتك وميزانيتك</p>
+                <div class="breadcrumb">
+                    <a href="index.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>الباقات</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="section-padding" id="packages">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">باقاتنا</span>
+                <h2 class="section-title">اختر الباقة المناسبة</h2>
+                <p class="section-subtitle">باقات متنوعة لجميع الاحتياجات والميزانيات مع ضمان الجودة</p>
+            </div>
+
+            <div class="packages-grid" id="packagesGrid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>الباقة الأساسية</h3>
+                        <div class="package-price">299</div>
+                        <div class="package-period">/ شهر</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> تنظيف عام للمنزل</li>
+                            <li><i class="fas fa-check-circle"></i> مرتين أسبوعياً</li>
+                            <li><i class="fas fa-check-circle"></i> تنظيف المطبخ والحمام</li>
+                            <li><i class="fas fa-check-circle"></i> دعم خلال ساعات العمل</li>
+                        </ul>
+                        <a href="booking.html" class="btn btn-primary">احجز الآن</a>
+                    </div>
+                </div>
+
+                <div class="package-card featured">
+                    <span class="badge">الأكثر شعبية ⭐</span>
+                    <div class="package-header">
+                        <h3>الباقة المميزة</h3>
+                        <div class="package-price">499</div>
+                        <div class="package-period">/ شهر</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> كل مميزات الباقة الأساسية</li>
+                            <li><i class="fas fa-check-circle"></i> تعقيم وتطهير شامل</li>
+                            <li><i class="fas fa-check-circle"></i> تنظيف مفروشات متقدم</li>
+                            <li><i class="fas fa-check-circle"></i> 3 مرات أسبوعياً</li>
+                        </ul>
+                        <a href="booking.html" class="btn btn-primary">احجز الآن</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>الباقة الذهبية</h3>
+                        <div class="package-price">799</div>
+                        <div class="package-period">/ شهر</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> كل المميزات المتقدمة</li>
+                            <li><i class="fas fa-check-circle"></i> تنظيف يومي احترافي</li>
+                            <li><i class="fas fa-check-circle"></i> تنظيف نوافذ وواجهات</li>
+                            <li><i class="fas fa-check-circle"></i> دعم فني 24/7</li>
+                        </ul>
+                        <a href="booking.html" class="btn btn-primary">احجز الآن</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تحكم الكاروسيل في الموبايل -->
+            <div class="packages-carousel-controls">
+                <button class="carousel-btn" id="packagesPrev" type="button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-dots" id="packagesDots">
+                    <span class="carousel-dot active" data-index="0"></span>
+                    <span class="carousel-dot" data-index="1"></span>
+                    <span class="carousel-dot" data-index="2"></span>
+                </div>
+                <button class="carousel-btn" id="packagesNext" type="button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="section-padding bg-light" id="compare">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">مقارنة تفصيلية للباقات</h2>
+            </div>
+
+            <div class="comparison-section">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>المميزات</th>
+                            <th>الأساسية</th>
+                            <th>المميزة</th>
+                            <th>الذهبية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">عدد الزيارات الأسبوعية</td>
+                            <td>مرتين</td>
+                            <td>3 مرات</td>
+                            <td>يومي</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">تنظيف عام</td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">تعقيم وتطهير</td>
+                            <td>-</td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">تنظيف مفروشات</td>
+                            <td>-</td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">تنظيف نوافذ</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><i class="fas fa-check-circle" style="color: #48BB78;"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">الدعم الفني</td>
+                            <td>ساعات العمل</td>
+                            <td>ساعات العمل</td>
+                            <td>24/7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-padding" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">أسئلة شائعة</span>
+                <h2 class="section-title">الأسئلة المتكررة حول الباقات</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <span>هل يمكن تغيير الباقة لاحقاً؟</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم بالتأكيد، يمكنك تغيير أو ترقية باقتك في أي وقت دون تحمل رسوم إضافية وبمرونة كاملة.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <span>ما المدة المطلوبة للاشتراك؟</span>
+                    </div>
+                    <div class="faq-answer">
+                        الحد الأدنى للاشتراك هو شهر واحد، ويمكنك إلغاء الخدمة أو تجديدها في أي وقت.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <span>هل تقدمون خصومات للعقود طويلة الأمد؟</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، نقدم خصومات خاصة ومميزة للعقود السنوية والعقود طويلة الأجل تصل إلى 20%.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <span>هل تتوفر باقات مخصصة حسب الطلب؟</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، نستطيع إنشاء باقات مخصصة تماماً حسب احتياجاتك الخاصة وميزانيتك.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <span>ما سياسة الإلغاء والاسترجاع؟</span>
+                    </div>
+                    <div class="faq-answer">
+                        يمكنك إلغاء الاشتراك بدون أي رسوم قبل انتهاء الشهر الحالي مع استرجاع كامل.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        <span>هل تقبلون دفعات مؤجلة أو أقساط؟</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، نقبل الدفع الآجل والتقسيط المريح للعقود السنوية والعقود التجارية الكبرى.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="bubble-float bubble1"></div>
+        <div class="bubble-float bubble2"></div>
+        <div class="bubble-float bubble3"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>هل أنت مستعد للبدء معنا؟</h2>
+                <p>احجز باقتك المفضلة الآن واستمتع بخدمة تنظيف احترافية لا مثيل لها</p>
+                <a href="booking.html" class="btn btn-light" style="margin-top: 1rem; font-size: 1.15rem; padding: 1rem 2.5rem;">
+                    <i class="fas fa-calendar-check"></i>
+                    احجز الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>
+                        <i class="fas fa-sparkles"></i>
+                        شركة المميز للنظافة
+                    </h3>
+                    <p>نقدم أفضل خدمات التنظيف الاحترافية التي تلامس الكمال</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="packages.html">الباقات</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>خدماتنا</h4>
+                    <ul>
+                        <li><a href="services.html">تنظيف المنازل</a></li>
+                        <li><a href="services.html">تنظيف المكاتب</a></li>
+                        <li><a href="services.html">التعقيم والتطهير</a></li>
+                        <li><a href="services.html">تنظيف الأثاث</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-phone"></i> +966 50 123 4567</li>
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-envelope"></i> info@cleaning.sa</li>
+                        <li><i class="fas fa-map-marker-alt"></i> القصيم، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 شركة المميز للنظافة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JS -->
+    <script>
+        (function () {
+            'use strict';
+
+            const navbar      = document.getElementById('navbar');
+            const menuToggle  = document.getElementById('menuToggle');
+            const navMenu     = document.getElementById('navMenu');
+            const navOverlay  = document.getElementById('navOverlay');
+            const scrollBtn   = document.getElementById('scrollToTop');
+
+            const sections    = document.querySelectorAll('.section-padding');
+
+            const packagesGrid = document.getElementById('packagesGrid');
+            const packagesPrev = document.getElementById('packagesPrev');
+            const packagesNext = document.getElementById('packagesNext');
+            const packagesDots = document.getElementById('packagesDots');
+
+            /* أنيميشن الهيرو عند تحميل الصفحة */
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.classList.add('packages-hero-loaded');
+            });
+
+            /* NAVBAR MOBILE */
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('mobile-active');
+                    navOverlay.classList.toggle('active');
+                    document.body.style.overflow = navMenu.classList.contains('mobile-active') ? 'hidden' : '';
+                });
+            }
+
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('mobile-active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (navMenu) {
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('mobile-active');
+                        navOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            /* SCROLL EFFECTS */
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (scrollBtn) {
+                    scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+                }
+            });
+
+            if (scrollBtn) {
+                scrollBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            /* REVEAL SECTIONS ON SCROLL */
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.18 });
+
+                sections.forEach(sec => observer.observe(sec));
+            } else {
+                window.addEventListener('load', () => {
+                    sections.forEach(sec => sec.classList.add('visible'));
+                });
+            }
+
+            /* CAROUSEL للباقات في الجوال: تمرير يدوي + تلقائي */
+            let currentIndex = 0;
+            let autoCarouselInterval = null;
+
+            const cards = packagesGrid ? packagesGrid.querySelectorAll('.package-card') : [];
+            const totalSlides = cards.length;
+
+            function updateDots(index) {
+                if (!packagesDots) return;
+                packagesDots.querySelectorAll('.carousel-dot').forEach(dot => {
+                    const di = parseInt(dot.dataset.index, 10) || 0;
+                    dot.classList.toggle('active', di === index);
+                });
+            }
+
+            function scrollToCard(index) {
+                if (!packagesGrid || !cards.length) return;
+                const card = cards[index];
+                if (!card) return;
+                const offsetLeft = card.offsetLeft;
+                packagesGrid.scrollTo({
+                    left: offsetLeft - 16,
+                    behavior: 'smooth'
+                });
+                updateDots(index);
+            }
+
+            if (packagesPrev) {
+                packagesPrev.addEventListener('click', () => {
+                    if (!totalSlides) return;
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    scrollToCard(currentIndex);
+                });
+            }
+
+            if (packagesNext) {
+                packagesNext.addEventListener('click', () => {
+                    if (!totalSlides) return;
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    scrollToCard(currentIndex);
+                });
+            }
+
+            if (packagesDots) {
+                packagesDots.querySelectorAll('.carousel-dot').forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const idx = parseInt(dot.dataset.index, 10) || 0;
+                        currentIndex = idx;
+                        scrollToCard(currentIndex);
+                    });
+                });
+            }
+
+            function startAutoCarousel() {
+                if (window.innerWidth > 768 || !totalSlides) return;
+                stopAutoCarousel();
+                autoCarouselInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    scrollToCard(currentIndex);
+                }, 6000);
+            }
+
+            function stopAutoCarousel() {
+                if (autoCarouselInterval) {
+                    clearInterval(autoCarouselInterval);
+                    autoCarouselInterval = null;
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                stopAutoCarousel();
+                startAutoCarousel();
+            });
+
+            if (packagesGrid) {
+                ['touchstart', 'mousedown', 'wheel'].forEach(evt => {
+                    packagesGrid.addEventListener(evt, () => {
+                        stopAutoCarousel();
+                    }, { passive: true });
+                });
+            }
+
+            startAutoCarousel();
+        })();
+    </script>
+</body>
+</html>

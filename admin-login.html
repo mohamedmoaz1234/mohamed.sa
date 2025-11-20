@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل دخول الأدمن</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Tajawal',sans-serif;background:linear-gradient(135deg,#F8FAFB 0%,#F0F8FF 100%);display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+    .login-card{background:#fff;padding:2.5rem 2rem;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.12);max-width:420px;width:100%;text-align:center}
+    h1{font-size:1.8rem;margin-bottom:.5rem;color:#1A2238}
+    p{color:#718096;margin-bottom:2rem;font-size:.95rem}
+    .form-group{text-align:right;margin-bottom:1.5rem}
+    label{display:block;margin-bottom:.4rem;font-weight:700;color:#2D3748;font-size:.95rem}
+    input{width:100%;padding:.9rem 1rem;border-radius:12px;border:1px solid rgba(0,168,232,.25);font-family:inherit;font-size:.95rem;direction:ltr}
+    input:focus{outline:none;border-color:#00A8E8;box-shadow:0 0 0 3px rgba(0,168,232,.15)}
+    button{width:100%;padding:1rem;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(135deg,#00A8E8,#00D9FF);color:#fff;font-weight:800;font-size:1rem;margin-top:.5rem;box-shadow:0 10px 25px rgba(0,168,232,.4);transition:.25s}
+    button:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,168,232,.55)}
+    .message{margin-top:1rem;font-size:.9rem}
+    .message.error{color:#E53E3E}
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h1>تسجيل دخول الأدمن</h1>
+    <p>ادخل بيانات اللوحة لإدارة الحجوزات.</p>
+    <div class="form-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" id="email" placeholder="admin@cleaning.sa">
+    </div>
+    <div class="form-group">
+      <label>كلمة المرور</label>
+      <input type="password" id="password" placeholder="******">
+    </div>
+    <button id="loginBtn">تسجيل الدخول</button>
+    <div id="msg" class="message"></div>
+  </div>
+  <script>
+    const API_BASE = 'http://localhost:4000';
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const msg = document.getElementById('msg');
+      msg.textContent = '';
+      if (!email || !password) { msg.textContent = 'الرجاء إدخال البريد وكلمة المرور'; msg.className='message error'; return; }
+      try{
+        const res = await fetch(API_BASE+'/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+        const data = await res.json();
+        if(!res.ok){ msg.textContent = data.message||'بيانات الدخول غير صحيحة'; msg.className='message error'; return; }
+        localStorage.setItem('adminToken', data.token);
+        window.location.href = 'admin-dashboard.html';
+      }catch{ msg.textContent='حدث خطأ غير متوقع، حاول مرة أخرى'; msg.className='message error'; }
+    });
+  </script>
+</body>
+</html>

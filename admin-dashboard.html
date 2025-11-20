@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لوحة التحكم - الحجوزات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Tajawal',sans-serif;background:#F7FAFC;margin:0}
+    header{background:linear-gradient(135deg,#00A8E8,#00D9FF);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+    header h1{font-size:1.4rem;margin:0}
+    header button{padding:.5rem 1.2rem;border-radius:999px;border:none;cursor:pointer;background:rgba(255,255,255,.12);color:#fff;font-weight:700;font-size:.9rem}
+    .container{padding:1.5rem}
+    table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    th,td{padding:.75rem .9rem;font-size:.85rem;border-bottom:1px solid #EDF2F7;text-align:center}
+    th{background:#F7FAFC;font-weight:800;color:#2D3748}
+    tr:last-child td{border-bottom:none}
+    .status{padding:.25rem .8rem;border-radius:999px;font-size:.75rem;font-weight:800}
+    .status.new{background:#EBF8FF;color:#2B6CB0}
+    .status.done{background:#C6F6D5;color:#2F855A}
+    .status.cancel{background:#FED7D7;color:#C53030}
+    select{padding:.2rem .4rem;border-radius:6px;border:1px solid #CBD5E0;font-size:.8rem;font-family:inherit}
+    .small{font-size:.78rem;color:#4A5568}
+    @media(max-width:900px){table{display:block;overflow-x:auto;white-space:nowrap}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>لوحة التحكم - الحجوزات</h1>
+    <button id="logoutBtn">تسجيل الخروج</button>
+  </header>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>العميل</th><th>الجوال</th><th>الخدمة / الباقة</th><th>التاريخ</th><th>الوقت</th><th>الدفع</th><th>المجموع</th><th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="bookingsBody"><tr><td colspan="9">جاري تحميل البيانات...</td></tr></tbody>
+    </table>
+  </div>
+  <script>
+    const API_BASE='http://localhost:4000';
+    const token=localStorage.getItem('adminToken');
+    if(!token){ window.location.href='admin-login.html'; }
+    document.getElementById('logoutBtn').addEventListener('click',()=>{ localStorage.removeItem('adminToken'); window.location.href='admin-login.html'; });
+
+    async function fetchBookings(){
+      const body=document.getElementById('bookingsBody');
+      body.innerHTML='<tr><td colspan="9">جاري تحميل البيانات...</td></tr>';
+      try{
+        const res=await fetch(API_BASE+'/api/bookings',{headers:{Authorization:'Bearer '+token}});
+        if(res.status===401){ localStorage.removeItem('adminToken'); window.location.href='admin-login.html'; return; }
+        const data=await res.json();
+        if(!Array.isArray(data)||data.length===0){ body.innerHTML='<tr><td colspan="9">لا توجد حجوزات حتى الآن.</td></tr>'; return; }
+        body.innerHTML='';
+        data.forEach(b=>{
+          const tr=document.createElement('tr');
+          const servicesName=b.bookingType==='services' && b.services ? b.services.map(s=>s.name).join('، ') : (b.package?b.package.name:'');
+          const statusClass=b.status==='مكتمل'?'done':(b.status==='ملغي'?'cancel':'new');
+          tr.innerHTML=`
+            <td>${b.id}</td>
+            <td><div class="small">${b.customerName||'-'}</div></td>
+            <td><div class="small">${b.customerPhone||'-'}</div></td>
+            <td><div class="small">${servicesName||'-'}</div></td>
+            <td>${b.date||'-'}</td>
+            <td>${b.time||'-'}</td>
+            <td>${b.paymentMethod||'-'}</td>
+            <td>${b.totalPrice||0} ريال</td>
+            <td>
+              <span class="status ${statusClass}">${b.status||'جديد'}</span><br>
+              <select data-id="${b.id}">
+                <option value="جديد" ${b.status==='جديد'?'selected':''}>جديد</option>
+                <option value="مكتمل" ${b.status==='مكتمل'?'selected':''}>مكتمل</option>
+                <option value="ملغي" ${b.status==='ملغي'?'selected':''}>ملغي</option>
+              </select>
+            </td>`;
+          body.appendChild(tr);
+        });
+        body.querySelectorAll('select').forEach(sel=>{
+          sel.addEventListener('change',()=>updateStatus(sel.dataset.id, sel.value));
+        });
+      }catch{ body.innerHTML='<tr><td colspan="9">حدث خطأ أثناء جلب البيانات.</td></tr>'; }
+    }
+
+    async function updateStatus(id,status){
+      try{
+        await fetch(API_BASE+'/api/bookings/'+id+'/status',{
+          method:'PATCH',
+          headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},
+          body:JSON.stringify({status})
+        });
+        fetchBookings();
+      }catch{ alert('تعذر تحديث الحالة، حاول مرة أخرى'); }
+    }
+
+    fetchBookings();
+  </script>
+</body>
+</html>
